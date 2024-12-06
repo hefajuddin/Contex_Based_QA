@@ -10,14 +10,15 @@ qa_pipeline = pipeline("question-answering", model="distilbert-base-cased-distil
 def home():
     return render_template("index.html")
 
+def load_dynamic_context():
+    # Load context from a text file or database
+    with open("data/context.txt", "r") as file:
+        return file.read()
+
 @app.route("/chat", methods=["POST"])
 def chat():
     user_input = request.json.get("message")
-    # Use a predefined context to answer factual questions
-    context = (
-        "Beijing is the capital of China. Dhaka is the capital of Bangladesh. "
-        "Washington, D.C., is the capital of the United States."
-    )
+    context = load_dynamic_context()
     answer = qa_pipeline(question=user_input, context=context)
     return jsonify({"response": answer['answer']})
 
