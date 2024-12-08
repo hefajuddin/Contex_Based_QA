@@ -23,5 +23,5 @@ def chat():
     return jsonify({"response": answer['answer']})
 
 if __name__ == "__main__":
-    print("\033[92m" + "Server is running successfully on http://127.0.0.1:5000" + "\033[0m")
-    app.run(debug=True, port=5000)
+    print("\033[92m" + "Server is running successfully on http://127.0.0.1:5005" + "\033[0m")
+    app.run(debug=True, port=5005)
